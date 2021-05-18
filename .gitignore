@@ -176,3 +176,5 @@ pod2htmd.tmp
 
 build/
 build.*/
+
+.vscode/
