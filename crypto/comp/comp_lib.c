@@ -15,13 +15,7 @@
 #include <openssl/err.h>
 #include "comp_local.h"
 
-#if defined(_WIN64)
-#define OPENSSL_INLINE __inline
-#else
-#define OPENSSL_INLINE
-#endif
-
-OPENSSL_INLINE COMP_CTX *COMP_CTX_new(COMP_METHOD *meth)
+COMP_CTX *COMP_CTX_new(COMP_METHOD *meth)
 {
     COMP_CTX *ret;
 
@@ -52,7 +46,7 @@ const char *COMP_get_name(const COMP_METHOD *meth)
     return meth->name;
 }
 
-OPENSSL_INLINE void COMP_CTX_free(COMP_CTX *ctx)
+void COMP_CTX_free(COMP_CTX *ctx)
 {
     if (ctx == NULL)
         return;
@@ -62,7 +56,7 @@ OPENSSL_INLINE void COMP_CTX_free(COMP_CTX *ctx)
     OPENSSL_free(ctx);
 }
 
-OPENSSL_INLINE int COMP_compress_block(COMP_CTX *ctx, unsigned char *out, int olen,
+int COMP_compress_block(COMP_CTX *ctx, unsigned char *out, int olen,
                         unsigned char *in, int ilen)
 {
     int ret;
@@ -77,7 +71,7 @@ OPENSSL_INLINE int COMP_compress_block(COMP_CTX *ctx, unsigned char *out, int ol
     return ret;
 }
 
-OPENSSL_INLINE int COMP_expand_block(COMP_CTX *ctx, unsigned char *out, int olen,
+int COMP_expand_block(COMP_CTX *ctx, unsigned char *out, int olen,
                       unsigned char *in, int ilen)
 {
     int ret;
